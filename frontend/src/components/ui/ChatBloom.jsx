@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MessageCircle, X } from 'lucide-react';
 import LolaChat from '../Chatbot/LolaChat';
 
 const ChatBloom = () => {
@@ -29,17 +30,16 @@ const ChatBloom = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="w-14 h-14 bg-[var(--deep)] rounded-full flex items-center justify-center shadow-lg relative interactive"
+        className="w-16 h-16 bg-[#D4A374] text-[var(--deep)] rounded-full flex items-center justify-center shadow-[0_10px_30px_rgba(212,163,116,0.3)] relative interactive border-2 border-white/20"
       >
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.5 }}
-          className="text-[var(--base)]"
         >
           {isOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <X size={28} />
           ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <MessageCircle size={28} fill="currentColor" fillOpacity={0.1} />
           )}
         </motion.div>
       </motion.button>

@@ -112,7 +112,7 @@ const StaggeredMenu = () => {
                   whileHover={{ scale: 1.1 }}
                   src={item.image} 
                   alt={item.name}
-                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out"
+                  className="w-full h-full object-cover transition-transform duration-[1500ms] ease-out"
                 />
                 {/* Click Hint Overlay */}
                 <div className="absolute inset-0 bg-black/0 group-hover/img:bg-black/20 flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-all duration-300">
@@ -150,6 +150,29 @@ const StaggeredMenu = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Full Menu CTA */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-32 flex flex-col items-center text-center"
+        >
+          <div className="w-px h-24 bg-gradient-to-b from-black/20 to-transparent mb-12"></div>
+          <h3 className="text-3xl md:text-5xl font-serif mb-8 italic">Craving the full list?</h3>
+          <a 
+            href="/dear-lola-menu.pdf" 
+            target="_blank" 
+            rel="noreferrer"
+            className="group relative px-12 py-5 bg-[var(--deep)] text-[var(--base)] rounded-full overflow-hidden interactive shadow-2xl transition-all hover:scale-105"
+          >
+            <span className="relative z-10 font-sans uppercase tracking-[0.3em] text-xs">View Full Menu (PDF)</span>
+            <motion.div 
+              className="absolute inset-0 bg-[var(--accent)] translate-y-full group-hover:translate-y-0 transition-transform duration-500"
+            />
+          </a>
+          <p className="mt-6 text-[10px] uppercase tracking-widest opacity-40 font-sans">Available for dine-in & takeaway</p>
+        </motion.div>
       </div>
 
       {/* Lightbox Modal */}

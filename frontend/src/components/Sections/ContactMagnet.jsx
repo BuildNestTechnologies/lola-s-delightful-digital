@@ -76,28 +76,40 @@ const ContactMagnet = () => {
         </div>
 
         {/* Right: Map & Info */}
-        <div className="flex flex-col gap-12">
-          <div className="relative w-full h-[300px] overflow-hidden group interactive rounded-full aspect-square md:aspect-auto md:rounded-none" style={{ clipPath: 'circle(45% at 50% 50%)' }}>
-            {/* Cropped Map */}
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative shrink-0 w-64 h-64 md:w-80 md:h-80 overflow-hidden rounded-full border-8 border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.3)] group interactive"
+          >
+            {/* User Provided Map Embed - White Style */}
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.1456983058866!2d73.13745267598808!3d19.23247074704094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795006b5d9bc3%3A0x6bba847c1bcfbcbc!2sDear%20Lola!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.470721620106!2d73.1350679!3d19.2618854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7972011631e6d%3A0x9787e9f13e446082!2sDear%20Lola%20Kitchen%20%26%20Bar!5e0!3m2!1sen!2sin!4v1777306908956!5m2!1sen!2sin" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
-              className="scale-125 group-hover:scale-100 transition-transform duration-1000"
+              className="scale-110 group-hover:scale-100 transition-transform duration-[2s] ease-out"
             ></iframe>
-            <div className="absolute inset-0 border-2 border-[var(--accent)] rounded-full pointer-events-none opacity-50 scale-95"></div>
-          </div>
-
-          <div>
-            <h3 className="font-serif text-3xl mb-4 text-[var(--accent)]">Mohan Tribeca</h3>
-            <p className="font-sans opacity-80 mb-2">Gandhare Road, Kalyan West</p>
-            <p className="font-sans opacity-80 mb-8">Mon–Sun, 12 PM – 1 AM</p>
             
-            <button className="text-[var(--base)] border-b border-[var(--base)] pb-1 hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors uppercase tracking-widest text-xs interactive">
+            {/* Clean Ring Overlay */}
+            <div className="absolute inset-0 border-[10px] border-[var(--deep)] rounded-full pointer-events-none"></div>
+          </motion.div>
+
+          <div className="text-center md:text-left max-w-sm">
+            <h3 className="font-serif text-3xl md:text-4xl mb-6 text-[var(--accent)]">Dear Lola <br className="hidden md:block" />Kitchen & Bar</h3>
+            <p className="font-sans opacity-80 mb-4 leading-relaxed text-sm md:text-base">
+              Ground Floor, Mohan Tribeca, <br />
+              Gandhare Road, near KM Agrawal College, <br />
+              West, Khadakpada, Kalyan, <br />
+              Maharashtra 421301
+            </p>
+            <p className="font-sans opacity-80 mb-8 italic text-sm">Mon–Sun, 12 PM – 1 AM</p>
+            
+            <button className="text-[var(--base)] border-b border-[var(--base)] pb-1 hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors uppercase tracking-widest text-[10px] interactive">
               Chat with Lola (our AI) ↓
             </button>
           </div>
