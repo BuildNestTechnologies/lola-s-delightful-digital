@@ -9,10 +9,10 @@ import StaggeredMenu from './components/Sections/StaggeredMenu';
 import ScrollGallery from './components/Sections/ScrollGallery';
 import TestimonialWave from './components/Sections/TestimonialWave';
 import ContactMagnet from './components/Sections/ContactMagnet';
-import CustomCursor from './components/UI/CustomCursor';
-import WhatsAppOrb from './components/UI/WhatsAppOrb';
-import ChatBloom from './components/UI/ChatBloom';
-import LoadingScreen from './components/UI/LoadingScreen';
+import CustomCursor from './components/ui/CustomCursor';
+import WhatsAppOrb from './components/ui/WhatsAppOrb';
+import ChatBloom from './components/ui/ChatBloom';
+import LoadingScreen from './components/ui/LoadingScreen';
 import { usePrefersReducedMotion } from './hooks/useMediaQuery';
 
 function App() {
