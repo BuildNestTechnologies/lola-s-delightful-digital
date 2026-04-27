@@ -1,16 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { MenuTabs } from "@/components/site/MenuTabs";
+import { Gallery } from "@/components/site/Gallery";
+import { Testimonials } from "@/components/site/Testimonials";
+import { MapSection } from "@/components/site/MapSection";
+import { Footer } from "@/components/site/Footer";
+import { WhatsAppButton } from "@/components/site/WhatsAppButton";
+import { Chatbot } from "@/components/site/Chatbot";
+import { ReservationModal } from "@/components/site/ReservationModal";
+import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { CursorFollower } from "@/components/site/CursorFollower";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const [reserveOpen, setReserveOpen] = useState(false);
+  const openReserve = () => setReserveOpen(true);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <main className="bg-background text-foreground overflow-x-clip">
+      <ScrollProgress />
+      <CursorFollower />
+      <Navbar onReserve={openReserve} />
+      <Hero onReserve={openReserve} />
+      <About />
+      <MenuTabs />
+      <Gallery />
+      <Testimonials />
+      <MapSection />
+      <Footer />
+
+      <WhatsAppButton />
+      <Chatbot />
+      <ReservationModal open={reserveOpen} onClose={() => setReserveOpen(false)} />
+    </main>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
