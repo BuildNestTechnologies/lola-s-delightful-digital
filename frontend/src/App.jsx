@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, AnimatePresence, MotionConfig } from 'framer-motion';
 
 import Navbar from './components/Layout/Navbar';
 import Footer from './components/Layout/Footer';
@@ -12,8 +12,11 @@ import ContactMagnet from './components/Sections/ContactMagnet';
 import CustomCursor from './components/UI/CustomCursor';
 import WhatsAppOrb from './components/UI/WhatsAppOrb';
 import ChatBloom from './components/UI/ChatBloom';
+import LoadingScreen from './components/UI/LoadingScreen';
+import { usePrefersReducedMotion } from './hooks/useMediaQuery';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -21,38 +24,48 @@ function App() {
     restDelta: 0.001
   });
 
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
-    <div className="relative w-full bg-[var(--base)] min-h-screen">
-      {/* Global Elements */}
-      <div className="grain-overlay"></div>
-      <CustomCursor />
-      
-      {/* Scroll Progress Indicator */}
-      <motion.div
-        className="fixed top-0 left-0 w-1 h-screen bg-[var(--accent)]/20 z-50 origin-top hidden md:block"
-        style={{ scaleY }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-1 h-screen bg-[var(--accent)] z-50 origin-top hidden md:block"
-        style={{ scaleY }}
-      />
+    <MotionConfig reducedMotion={prefersReducedMotion ? "always" : "user"}>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <LoadingScreen key="loader" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
 
-      <Navbar />
-      <WhatsAppOrb />
-      <ChatBloom />
+      <div className="relative w-full bg-[var(--base)] min-h-screen">
+        {/* Global Elements */}
+        <div className="grain-overlay"></div>
+        <CustomCursor />
+        
+        {/* Scroll Progress Indicator */}
+        <motion.div
+          className="fixed top-0 left-0 w-1 h-screen bg-[var(--accent)]/20 z-50 origin-top hidden md:block"
+          style={{ scaleY }}
+        />
+        <motion.div
+          className="fixed top-0 left-0 w-1 h-screen bg-[var(--accent)] z-50 origin-top hidden md:block"
+          style={{ scaleY }}
+        />
 
-      {/* Main Content */}
-      <main>
-        <HeroSplit />
-        <AsymmetricAbout />
-        <StaggeredMenu />
-        <ScrollGallery />
-        <TestimonialWave />
-        <ContactMagnet />
-      </main>
+        <Navbar />
+        <WhatsAppOrb />
+        <ChatBloom />
 
-      <Footer />
-    </div>
+        {/* Main Content */}
+        <main>
+          <HeroSplit />
+          <AsymmetricAbout />
+          <StaggeredMenu />
+          <ScrollGallery />
+          <TestimonialWave />
+          <ContactMagnet />
+        </main>
+
+        <Footer />
+      </div>
+    </MotionConfig>
   );
 }
 
